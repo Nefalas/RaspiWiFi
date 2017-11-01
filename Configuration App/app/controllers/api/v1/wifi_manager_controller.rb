@@ -14,6 +14,12 @@ module Api
         ssid = params[:ssid]
         encryption_type = params[:enc]
 
+        unless ssid.nil? || encryption_type.nil? || params[:key] == ''
+          render json: {
+            status: 'Received credentials'
+          }, status: :ok
+        end
+
         unless ssid.nil? || params[:key] == ''
           WifiManager.create_wpa_supplicant(ssid, encryption_type, params[:key])
         end
