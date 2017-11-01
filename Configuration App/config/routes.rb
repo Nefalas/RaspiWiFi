@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace 'api' do
+    namespace 'v1' do
+      # Wifi
+      get 'wifi/info' => 'wifi_manager#index'
+      get 'wifi/credentials' => 'wifi_manager#credentials'
+      get 'wifi/reset' => 'wifi_manager#reset'
+
+      # Camera control
+      get 'control/start' => 'camera_control#start_stream'
+      get 'control/stop' => 'camera_control#stop_stream'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
